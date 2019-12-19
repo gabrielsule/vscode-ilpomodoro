@@ -1,0 +1,83 @@
+{
+	"name": "ilpomodoro",
+	"displayName": "Il Pomodoro",
+	"description": "Maximiza tu productividad con pequeños breaks (pomodoros)",
+	"version": "0.0.1",
+	"publisher": "gabrielsule",
+	"author": {
+		"name": "Gabriel D. Sule",
+		"email": "gabrielsule@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gabrielsule/vscode-ilpomodoro.git"
+	},
+	"engines": {
+		"vscode": "^1.41.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"keywords": [
+		"timer",
+		"productivity",
+		"time management",
+		"pomodoro"
+	],
+	"activationEvents": [
+		"onCommand:extension.startpomodoro"
+	],
+	"main": "./out/extension.js",
+	"icon": "resources/tomato.png",
+	"contributes": {
+		"commands": [{
+			"command": "extension.startpomodoro",
+			"title": "Start",
+			"category": "🍅 Il Pomodoro"
+		}],
+		"configuration": {
+			"type": "object",
+			"title": "Il Pomodoro",
+			"properties": {
+				"pomodoro.work": {
+					"type": "number",
+					"default": 25,
+					"description": "Tiempo de ejecución de ciclo"
+				},
+				"pomodoro.breakMin": {
+					"type": "number",
+					"default": 5,
+					"description": "Tiempo de break entre ciclos"
+				},
+				"pomodoro.breakMax": {
+					"type": "number",
+					"default": 20,
+					"description": "Tiempo máximo de break"
+				},
+				"pomodoro.workInterval": {
+					"type": "number",
+					"default": 4,
+					"description": "Número total de repeticiones de ciclos"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.41.0",
+		"glob": "^7.1.5",
+		"mocha": "^6.2.2",
+		"typescript": "^3.6.4",
+		"tslint": "^5.20.0",
+		"vscode-test": "^1.2.2"
+	}
+}
