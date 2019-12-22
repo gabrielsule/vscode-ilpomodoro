@@ -20,6 +20,8 @@ https://marketplace.visualstudio.com/items?itemName=gabrielsule.ilpomodoro
 ## Ejecución
 
 * presionar **F1**: y escribir il pomodoro
+* desde el statusBar se puede hacer stop y start de un nuevo pomodoro
+
 
 ## Agradecimientos
 * [Pomodoro Technique](https://es.wikipedia.org/wiki/T%C3%A9cnica_Pomodoro)

@@ -146,10 +146,12 @@ class Pomodoro {
 		let color = fragments.task === _fragment ? 'red' : 'green';
 		let icon = fragments.task === _fragment ? '🍅' : '☕';
 		let title = fragments.task === _fragment ? 'pomodoro' : 'break';
+		let tooltip = actions.start === _action ? 'stop pomodoro' : 'start pomodoro';
 		let goAction = actions.start === _action ? '$(debug-restart)' : '$(debug-continue)';
 
 		_statusBar.text = `${icon} ${title} ${_cycle}/${workInterval}  ${data} ${goAction}`;
 		_statusBar.color = color;
+		_statusBar.tooltip = tooltip;
 		_statusBar.command = 'extension.stoppomodoro';
 		_statusBar.show();
 	}

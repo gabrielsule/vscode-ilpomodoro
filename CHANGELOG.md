@@ -1,9 +1,10 @@
-# Change Log
+# Changelog
+All notable changes to this project will be documented in this file.
 
-All notable changes to the "il pomodoro" extension will be documented in this file.
+## [0.0.1] - 2019-12-19
+- Creación de Il Pomodoro beta
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+## [0.0.2] - 2019-12-22
+- Refactorización del código
+- Agregado de botones de parar e iniciar
+- Mejora en el statusbar
