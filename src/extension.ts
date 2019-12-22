@@ -5,18 +5,11 @@ let _action: actions;
 let _fragment: fragments;
 let _cycle: number = 0;
 
-// let secMin = 60;
-// let minBreak = 5 * secMin;
-// let maxBreak = 20 * secMin;
-// let work = 25 * secMin;
-// let workInterval = 4;
-
-let secMin = 5;
-let minBreak = 1 * secMin;
-let maxBreak = 1 * secMin;
-let work = 1 * secMin;
-let workInterval = 2;
-
+let secMin = 60;
+let minBreak = 5 * secMin;
+let maxBreak = 20 * secMin;
+let work = 25 * secMin;
+let workInterval = 4;
 
 enum fragments {
 	task,
@@ -51,7 +44,7 @@ class Pomodoro {
 	time: number = 0;
 
 	constructor() {
-		//this.getSettings();
+		this.getSettings();
 	}
 
 	getSettings() {
