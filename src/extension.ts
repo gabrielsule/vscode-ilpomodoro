@@ -3,7 +3,8 @@ import * as vscode from 'vscode';
 let _statusBar: vscode.StatusBarItem;
 let _action: actions;
 let _fragment: fragments;
-let _cycle: number = 0;
+let _cycle = 0;
+let _interval: any;
 
 let secMin = 60;
 let minBreak = 5 * secMin;
@@ -20,7 +21,6 @@ enum fragments {
 enum actions {
 	start,
 	stop,
-	reset,
 }
 
 export function activate(context: vscode.ExtensionContext) {
@@ -35,9 +35,13 @@ export function activate(context: vscode.ExtensionContext) {
 		pomodoro.clickStatusBar();
 	});
 
+	let viewStatistics = vscode.commands.registerCommand('extension.viewstatistics', () => {
+		console.log('Estadisticas');
+	});
+
 	_statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 2);
 
-	context.subscriptions.push(startPomodoro, stopPomodoro);
+	context.subscriptions.push(startPomodoro, stopPomodoro, viewStatistics);
 }
 
 class Pomodoro {
@@ -64,19 +68,19 @@ class Pomodoro {
 			switch (fragment) {
 				case fragments.task:
 					this.time = work;
-					this.getTime();
+					this.setTime();
 					vscode.window.showInformationMessage(`🍅 comienzo de pomodoro ${work} min`);
 					break;
 
 				case fragments.minBreak:
 					this.time = minBreak;
-					this.getTime();
+					this.setTime();
 					vscode.window.showInformationMessage(`☕ comienza descanso corto ${minBreak} min`);
 					break;
 
 				case fragments.maxBreak:
 					this.time = maxBreak;
-					this.getTime();
+					this.setTime();
 					vscode.window.showInformationMessage(`☕ comienza descanso largo ${maxBreak} min`);
 					break;
 
@@ -108,12 +112,15 @@ class Pomodoro {
 		}
 	}
 
-	getTime() {
-		let interval = setInterval(() => {
+	setTime() {
+		_interval = setInterval(() => {
 			this.time--;
+
 			if (this.time === 0) {
-				clearInterval(interval);
+				clearInterval(_interval);
+				this.time = 0;
 			}
+
 			this.updateStatusBar(this.fancyTime(this.time));
 			this.setAction();
 		}, 1000);
@@ -127,8 +134,12 @@ class Pomodoro {
 	}
 
 	clickStatusBar() {
-		_action = actions.start === _action ? actions.reset : actions.start;
-		this.workflow(1, _fragment, _action);
+		if (actions.start === _action) {
+			clearInterval(_interval);
+			this.workflow(0, 0, actions.stop);
+		} else {
+			this.workflow(1, fragments.task, actions.start);
+		}
 	}
 
 	updateStatusBar(data: string) {

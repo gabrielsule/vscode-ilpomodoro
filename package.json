@@ -41,8 +41,8 @@
 				"category": "🍅 Il Pomodoro"
 			},
 			{
-				"command": "extension.resetpomodoro",
-				"title": "Reset",
+				"command": "extension.viewstatistics",
+				"title": "Statistics",
 				"category": "🍅 Il Pomodoro"
 			}
 		],
