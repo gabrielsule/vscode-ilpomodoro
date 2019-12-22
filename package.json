@@ -31,10 +31,21 @@
 	"icon": "resources/tomato.png",
 	"contributes": {
 		"commands": [{
-			"command": "extension.startpomodoro",
-			"title": "Start",
-			"category": "🍅 Il Pomodoro"
-		}],
+				"command": "extension.startpomodoro",
+				"title": "Start",
+				"category": "🍅 Il Pomodoro"
+			},
+			{
+				"command": "extension.stoppomodoro",
+				"title": "Stop",
+				"category": "🍅 Il Pomodoro"
+			},
+			{
+				"command": "extension.resetpomodoro",
+				"title": "Reset",
+				"category": "🍅 Il Pomodoro"
+			}
+		],
 		"configuration": {
 			"type": "object",
 			"title": "Il Pomodoro",
@@ -44,12 +55,12 @@
 					"default": 25,
 					"description": "Tiempo de ejecución de ciclo"
 				},
-				"pomodoro.breakMin": {
+				"pomodoro.minBreak": {
 					"type": "number",
 					"default": 5,
 					"description": "Tiempo de break entre ciclos"
 				},
-				"pomodoro.breakMax": {
+				"pomodoro.maxBreak": {
 					"type": "number",
 					"default": 20,
 					"description": "Tiempo máximo de break"
