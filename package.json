@@ -2,7 +2,7 @@
 	"name": "ilpomodoro",
 	"displayName": "Il Pomodoro",
 	"description": "Maximiza tu productividad con pequeños breaks (pomodoros)",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "gabrielsule",
 	"author": {
 		"name": "Gabriel D. Sule",
@@ -22,7 +22,9 @@
 		"timer",
 		"productivity",
 		"time management",
-		"pomodoro"
+		"pomodoro",
+		"status bar",
+		"sound"
 	],
 	"activationEvents": [
 		"onCommand:extension.startpomodoro"
@@ -30,7 +32,8 @@
 	"main": "./out/extension.js",
 	"icon": "resources/tomato.png",
 	"contributes": {
-		"commands": [{
+		"commands": [
+			{
 				"command": "extension.startpomodoro",
 				"title": "Start",
 				"category": "🍅 Il Pomodoro"
@@ -69,7 +72,13 @@
 					"type": "number",
 					"default": 4,
 					"description": "Número total de repeticiones de ciclos"
+				},
+				"pomodoro.sound": {
+					"type": "boolean",
+					"default": true,
+					"description": "Sonido al finalizar cada pomodoro"
 				}
+
 			}
 		}
 	},

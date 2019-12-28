@@ -8,3 +8,6 @@ All notable changes to this project will be documented in this file.
 - Refactorización del código
 - Agregado de botones de parar e iniciar
 - Mejora en el statusbar
+
+## [0.0.3] - 2019-12-23
+- Avisos sonoros

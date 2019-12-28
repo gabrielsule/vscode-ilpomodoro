@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+const _childProc = require('child_process');
+const _path = require('path');
 
 let _statusBar: vscode.StatusBarItem;
 let _action: actions;
@@ -6,11 +8,19 @@ let _fragment: fragments;
 let _cycle = 0;
 let _interval: any;
 
-let secMin = 60;
-let minBreak = 5 * secMin;
-let maxBreak = 20 * secMin;
-let work = 25 * secMin;
+// let secMin = 60;
+// let minBreak = 5 * secMin;
+// let maxBreak = 20 * secMin;
+// let work = 25 * secMin;
+// let workInterval = 4;
+
+let secMin = 10;
+let minBreak = 10 * secMin;
+let maxBreak = 10 * secMin;
+let work = 10 * secMin;
 let workInterval = 4;
+let sound = true;
+
 
 enum fragments {
 	task,
@@ -57,6 +67,7 @@ class Pomodoro {
 		maxBreak = config.maxBreak * secMin;
 		work = config.work * secMin;
 		workInterval = config.workInterval;
+		sound = config.sound;
 	}
 
 	workflow(cycle: number, fragment: fragments, action: actions) {
@@ -70,18 +81,21 @@ class Pomodoro {
 					this.time = work;
 					this.setTime();
 					vscode.window.showInformationMessage(`🍅 comienzo de pomodoro ${work} min`);
+					this.setSound();
 					break;
 
 				case fragments.minBreak:
 					this.time = minBreak;
 					this.setTime();
 					vscode.window.showInformationMessage(`☕ comienza descanso corto ${minBreak} min`);
+					this.setSound();
 					break;
 
 				case fragments.maxBreak:
 					this.time = maxBreak;
 					this.setTime();
 					vscode.window.showInformationMessage(`☕ comienza descanso largo ${maxBreak} min`);
+					this.setSound();
 					break;
 
 				default:
@@ -124,6 +138,15 @@ class Pomodoro {
 			this.updateStatusBar(this.fancyTime(this.time));
 			this.setAction();
 		}, 1000);
+	}
+
+	setSound() {
+		if (sound) {
+			if (process.platform === 'win32') {
+				let _playerPath = _path.join(__dirname, '..', 'resources', 'sound', 'play.exe');
+				_childProc.execFile(_playerPath, ['sound.wav']);
+			}
+		}
 	}
 
 	fancyTime(data: number) {

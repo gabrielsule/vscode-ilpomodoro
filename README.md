@@ -25,4 +25,5 @@ https://marketplace.visualstudio.com/items?itemName=gabrielsule.ilpomodoro
 
 ## Agradecimientos
 * [Pomodoro Technique](https://es.wikipedia.org/wiki/T%C3%A9cnica_Pomodoro)
+* Archivo wav [GRSites](http://www.grsites.com/)
 * Icono creado por [Freepik](https://www.freepik.com/) en [www.flaticon.com](https://www.flaticon.com)
